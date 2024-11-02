@@ -157,20 +157,14 @@ AFRAME.registerComponent('chat-box', {
         const username = document.querySelector('#user-name');
 
         // Inicializar Socket.io
-      // Cambiar esta línea en tu frontend
-      const socket = io("http://localhost:3000");
-      // Usa la IP del servidor
-
+        const socket = io("http://192.168.1.5:3000");
 
         // Función para enviar el mensaje al chat
         const enviarMensaje = () => {
             const message = input.value;
             const user = username.value || "Usuario desconocido"; // Nombre por defecto
 
-            // Logear mensaje en el chat-box
-            messages.innerHTML += `<b>${user}:</b> ${message} <br>`;
-
-            // Emitir el mensaje al servidor
+            // Emitir el mensaje al servidor, pero no agregarlo al chat aquí
             socket.emit("chat message", { text: message, user: user });
 
             input.value = ""; // Limpiar el campo de entrada
@@ -192,6 +186,7 @@ AFRAME.registerComponent('chat-box', {
         });
     }
 });
+
 
 
 
